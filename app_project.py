@@ -1,9 +1,5 @@
 from flask import Flask, render_template, request, redirect
 import os
-#import requests
-#from datetime import date,timedelta
-#from requests.auth import HTTPBasicAuth
-#import simplejson as json
 import pandas as pd
 
 from bokeh.tile_providers import get_provider, Vendors
@@ -14,14 +10,6 @@ from bokeh.models import ColumnDataSource, HoverTool
 from bokeh.io import output_file, show, output_notebook
 
 app = Flask(__name__)
-
-#@app.route('/')
-#def index():
-#  return render_template('request.html')
-
-@app.route('/about')
-def about():
-  return render_template('about.html')
 
 #Load Data
 LV_restaurants=pd.read_csv('dataset-capstone/LV_restaurants.csv')
@@ -64,7 +52,7 @@ def create_map_hover(df):
 @app.route('/index',methods=['GET','POST'])
 def index():
     if request.method=='GET':
-        return render_template('request.html')
+        return render_template('food_app.html')
     else:
         food=request.form['food'].split(' ')
         

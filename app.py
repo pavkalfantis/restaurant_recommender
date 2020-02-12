@@ -16,10 +16,10 @@ LV_restaurants=pd.read_csv('dataset-capstone/LV_restaurants.csv')
 LV_restaurants=LV_restaurants.drop(columns=['Unnamed: 0'])
 LV_restaurants['categories_list']=LV_restaurants.categories.str.split(', ')
 
-def restaurant_selection(selection = ['Mexican']):
+def restaurant_selection(selection = ['Mexican'],top_values=10):
     mask = LV_restaurants.categories_list.apply(lambda x: any(item for item in selection if item in x))
     df = LV_restaurants[mask]
-    return df.sort_values(['stars','review_count'],ascending=[False, False]).head(10)
+    return df.sort_values(['stars','review_count'],ascending=[False, False]).head(top_values)
 
 def create_map_hover(df):
     tile_provider = get_provider(Vendors.CARTODBPOSITRON_RETINA)
@@ -55,15 +55,17 @@ def index():
         return render_template('food_app.html')
     else:
         food=request.form['food'].split(' ')
-        
+        top=10
+        if request.form['top']:
+            top=int(request.form['top'])
     #check if food in availabe categories
     if food[0] not in LV_restaurants.categories_list.apply(pd.Series).stack().value_counts().index:
         #render error page eventually
         food=['Mexican']
-        
-    p=create_map_hover(restaurant_selection(food))
+
+    p=create_map_hover(restaurant_selection(food,top))
     script, div = components(p)
-    return render_template("chart_temp.html", div=div, script=script)
+    return render_template("chart.html", div=div, script=script)
 
 if __name__ == '__main__':
   app.run(port=33507,debug=True)

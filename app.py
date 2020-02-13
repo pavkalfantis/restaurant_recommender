@@ -26,13 +26,13 @@ def create_map_hover(df):
     source = ColumnDataSource(data=dict(
                             x=list(df['merc_x']), 
                             y=list(df['merc_y']),
-                            categories=list(df['categories']),
+                            review_count=list(df['review_count']),
                             stars=list(df['stars']),
                             restaurant_name=list(df['name'])))
     hover = HoverTool(tooltips=[
-        ("name", "@restaurant_name"),
-        ("stars","@stars"),
-       # ("categories","@categories")
+        ("Name", "@restaurant_name"),
+        ("Score","@stars"),
+        ("Reviews","@review_count")
 
     ])
     # range bounds supplied in web mercator coordinates

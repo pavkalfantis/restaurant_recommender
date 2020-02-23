@@ -11,7 +11,7 @@ from bokeh.io import output_file, show, output_notebook
 
 app = Flask(__name__)
 
-#Load Data
+#Load Final Dataframe used to create the map. The dataframe has been created in the Jupyter Notebook
 LV_restaurants=pd.read_csv('dataset-capstone/LV_restaurants.csv')
 LV_restaurants=LV_restaurants.drop(columns=['Unnamed: 0'])
 LV_restaurants['categories_list']=LV_restaurants.categories.str.split(', ')
@@ -24,7 +24,7 @@ def restaurant_selection(selection = ['Mexican'],top_values=10):
 def create_map_hover(df):
     tile_provider = get_provider(Vendors.CARTODBPOSITRON_RETINA)
     source = ColumnDataSource(data=dict(
-                            x=list(df['merc_x']), 
+                            x=list(df['merc_x']),
                             y=list(df['merc_y']),
                             review_count=list(df['review_count']),
                             stars=list(df['stars']),
@@ -36,15 +36,15 @@ def create_map_hover(df):
 
     ])
     # range bounds supplied in web mercator coordinates
-    p = figure(x_axis_type="mercator", 
+    p = figure(x_axis_type="mercator",
                y_axis_type="mercator",
                tools=[hover, 'wheel_zoom','save'])
     p.add_tile(tile_provider)
     p.circle(x='x',
-             y='y', 
+             y='y',
              source=source,
              #size='stars',
-             line_color="red", 
+             line_color="red",
              fill_color="red",
              fill_alpha=0.1)
     return p

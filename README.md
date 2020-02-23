@@ -1,9 +1,8 @@
 # Capstone Project for the TDI
 
-My project for the Data Incubator.
-The working app can be found [here]()  
+My project for the [Data Incubator](https://www.thedataincubator.com/)
+The working app has been deployed on [heroku](http://restaurants-lv.herokuapp.com/index)  
 
-added local repo
 
 References:
 https://www.w3schools.com/w3css/w3css_templates.asp

@@ -41,37 +41,35 @@ h1, h2, h3, h4, h5, h6 {
   <!-- About Section -->
   <div class="w3-row w3-padding-64" id="about">
     <div class="w3-col m6 w3-padding-large w3-hide-small">
-        <img src="static/listjpg.JPG">
-        <img src="https://www.kellyprincewrites.com/wp-content/uploads/2018/07/Cottons-Kelly-Prince-Wright-1-800x1000.jpg" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="6000" height="750">  
-        
+        <img src="https://www.kellyprincewrites.com/wp-content/uploads/2018/07/Cottons-Kelly-Prince-Wright-1-800x1000.jpg" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="6000" height="750">
+
     </div>
 
     <div class="w3-col m6 w3-padding-large">
       <h1 class="w3-center">About the Las Vegas Food Guide</h1><br>
         <!-- This is a comment -->
 <!--      <h5 class="w3-center">Tradition since 1889</h5>  -->
-            <p class="w3-large">This is my project for the Data Incubator. The app shows restaurant recommendations on a map of the area for you try! Since some of the restaurants in the dataset are tagged with no categories and others are tagged with many categories that are not representative, NLP techniques are used to correct the category list for the restaurant and pick the most representative from the top 20 categories in the dataset. </p>
-        <img src="static/barplot.png"  alt="Bar Plot" > <!-- width="500" height="500">-->
-        <p class="w3-large">Here is an example on how a review can be used to extract information.. </p>
-        <img src="static/reviewexample.PNG"  alt="review"  width="812" height="413">
-              <img src="static/wordcloud.png"  alt="Worldcloud"  width="810" height="540">
+            <p class="w3-large">This is my project for the Data Incubator. The app shows restaurant recommendations on a map of the area for you to try! The top 20 categories with the most restaurants are shown on the bar plot. Pick one of the categories to get restaurant recommendations! </p>
+        <img src="static/top20.png"  alt="Bar Plot" > <!-- width="500" height="500">-->
+        <p class="w3-large">Here is an example of a wordcloud based on the reviews of a specific restaurant. The CreateReviewWordcloud function will create wordclouds based on the reviews of a specific restaurant </p>
+              <img src="static/wordcloud_test.png"  alt="Worldcloud"  width="810" height="540">
 
-        <!-- #include virtual="templates/bar_test.html" --> 
+        <!-- #include virtual="templates/bar_test.html" -->
 
 
-    </div> 
+    </div>
   </div>
-  
+
   <hr>
-  
+
   <!-- Restaurant Section -->
   <div class="w3-row w3-padding-64" id="menu">
     <div class="w3-col l6 w3-padding-large">
       <h1 class="w3-center">Try Different Restaurants and Cuisines!</h1><br>
-        
+
            <form id='userinfoform_lulu' method='post' action='index' >
       <p>
-    What would you like to eat? <input type='text' name='food' placeholder="Mexican"/>
+    What would you like to eat? Try one of the top 20 categories<input type='text' name='food' placeholder="Mexican"/>
 
       </p>
        <p>
@@ -85,21 +83,21 @@ h1, h2, h3, h4, h5, h6 {
     </form>
 
     </div>
-    
+
     <div class="w3-col l6 w3-padding-large">
       <img src="https://secureservercdn.net/45.40.148.106/sxn.674.myftpupload.com/wp-content/uploads/2019/04/Dallas_El-Vecino_El-Vecino-Facebook.jpg" class="w3-round w3-image w3-opacity-min" alt="Menu" style="width:100%">
     </div>
   </div>
 
   <hr>
-    
+
     <div class="w3-container w3-padding-64" id="contact">
     <h1>Contact</h1><br>
     <p>The code used for this project can be found on <a href="https://github.com/pavkalfantis/restaurant_recommender" title="Github" target="_blank" class="w3-hover-text-green">Github</a></p>
     <p>For comments or recommendations, connect on <a href="https://www.linkedin.com/in/pkalfantis/" title="LinkedIn" target="_blank" class="w3-hover-text-green">LinkedIn</a></p>
 
-  </div>   
-  
+  </div>
+
 <!-- End page content -->
 </div>
 

@@ -11,12 +11,16 @@ from bokeh.io import output_file, show, output_notebook
 
 app = Flask(__name__)
 
-#Load Final Dataframe used to create the map. The dataframe has been created in the Jupyter Notebook
+#Load Final Dataframe used to create the map. The dataframe has been created in the Jupyter Notebook.
 LV_restaurants=pd.read_csv('dataset-capstone/LV_restaurants.csv')
 LV_restaurants=LV_restaurants.drop(columns=['Unnamed: 0'])
 LV_restaurants['categories_list']=LV_restaurants.categories.str.split(', ')
+LV_restaurants['reduced_categories_list'] = LV_restaurants['categories_list'].apply(
+    lambda row: [val for val in row if val != 'Restaurants' and val!='Food']
+)
+top20 = LV_restaurants.reduced_categories_list.apply(pd.Series).stack().value_counts().head(20)
 
-def restaurant_selection(selection = ['Mexican'],top_values=10):
+def restaurant_selection(selection,top_values=10):
     mask = LV_restaurants.categories_list.apply(lambda x: any(item for item in selection if item in x))
     df = LV_restaurants[mask]
     return df.sort_values(['stars','review_count'],ascending=[False, False]).head(top_values)
@@ -59,8 +63,8 @@ def index():
         if request.form['top']:
             top=int(request.form['top'])
     #check if food in availabe categories
-    if food[0] not in LV_restaurants.categories_list.apply(pd.Series).stack().value_counts().index:
-        #render error page eventually
+    if food[0] not in top20.index:
+        #render error page eventually. This way now it ensured giving a result if the requested value is not in the categories_list
         food=['Mexican']
 
     p=create_map_hover(restaurant_selection(food,top))

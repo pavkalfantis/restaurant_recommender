@@ -12,7 +12,7 @@ from bokeh.io import output_file, show, output_notebook
 app = Flask(__name__)
 
 #Load Final Dataframe used to create the map. The dataframe has been created in the Jupyter Notebook.
-LV_restaurants=pd.read_csv('dataset-capstone/LV_restaurants.csv')
+LV_restaurants=pd.read_csv('dataset-app/LV_restaurants.csv')
 LV_restaurants=LV_restaurants.drop(columns=['Unnamed: 0'])
 LV_restaurants['categories_list']=LV_restaurants.categories.str.split(', ')
 LV_restaurants['reduced_categories_list'] = LV_restaurants['categories_list'].apply(
@@ -52,6 +52,11 @@ def create_map_hover(df):
              fill_color="red",
              fill_alpha=0.1)
     return p
+
+@app.route('/')
+def main():
+    return redirect('/index')
+
 
 @app.route('/index',methods=['GET','POST'])
 def index():
